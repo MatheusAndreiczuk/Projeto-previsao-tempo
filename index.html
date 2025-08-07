@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/styles/styles.css">
+    <title>Previsão do tempo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <main>
+        <div id="container">
+            <form id="search">
+                <i class="fa-solid fa-location-dot"></i>
+                <input type="search" id="city-name" name="city-name" placeholder="Digite o nome da cidade" required>
+                <button type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+
+            <div id="weather">
+                <h1 id="title">Ponta Grossa, BR</h1>
+
+                <div class="infos">
+                    <div id="temp">
+                        <img src="http://openweathermap.org/img/wn/04d@2x.png" alt="" id="temp-img">
+
+                        <div>
+                            <p id="temp-value">
+                                25ºC
+                            </p>
+                            <p id="temp-description">
+                                Nublado
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="other-infos">
+                        <div class="info">
+                            <i id="temp-max-icon" class="fa-solid fa-temperature-arrow-up"></i>
+
+                            <div>
+                                <h2>Temp. max</h2>
+
+                                <p id="temp-max">
+                                    32ºC
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="info">
+                            <i class="fa-solid fa-temperature-arrow-down" id="temp-min-icon"></i>
+                            <div>
+                                <h2>Temp. min</h2>
+                                <p id="temp-min">25ºC</p>
+                            </div>
+                        </div>
+
+                        <div class="info">
+                            <i class="fa-solid fa-wind" id="temp-wind-icon"></i>
+                            <div>
+                                <h2>Vento</h2>
+                                <p id="wind">25 km/h</p>
+                            </div>
+                        </div>
+
+                        <div class="info">
+                            <i class="fa-solid fa-droplet" id="temp-humidity-icon"></i>
+                            <div>
+                                <h2>Umidade</h2>
+                                <p id="humidity">70%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="carousel"></div>
+                
+            </div>
+            <div id="alert"></div>
+        </div>
+    </main>
+    <script src="src/javascript/script.js"></script>
+</body>
+
+</html>
