@@ -29,10 +29,18 @@ document.querySelector('#search').addEventListener('submit', async (event) => {
         const city = json.city.name;
         const country = json.city.country;
 
-        // aqui o ISOString leva para um formato "YYYY-MM-DDTHH:MM:SSZ" e o split 'T' faz separar em 2 partes, ficando a parte [0] com a data e a parte [1] com a hora
-        const today = new Date().toISOString().split('T')[0]; 
-        // pega a lista json, cria novo array com o filter pegando as previsões em que o dt_txt da API começa com a data de hoje
-        const todayForecasts = json.list.filter(item => item.dt_txt.startsWith(today));
+        
+        const now = Date.now();
+        // 24 horas em milissegundos: 24 * 60 * 60 * 1000
+        const next24h = now + (24 * 60 * 60 * 1000);
+        // A API retorna dados a cada 3 horas, então pega dados de agora + 24h
+        // Timestamp da API é em segundos, logo * 1000 pra converter para ms
+        const todayForecasts = json.list.filter(item => {
+            const itemTime = item.dt * 1000;
+            // Retorna as previsões entre agora e daqui 24h
+            return itemTime >= now && itemTime <= next24h;
+        });
+
 
         if (todayForecasts.length === 0) {
             showAlert('Não há dados de previsão para hoje.');
@@ -85,9 +93,9 @@ function showInfo(json) {
 
 function preencherCarousel(forecastList) {
     const carousel = document.getElementById('carousel');
-    carousel.innerHTML = ''; 
+    carousel.innerHTML = '';
 
-    const next_8h = forecastList.slice(0, 8); 
+    const next_8h = forecastList.slice(0, 8);
 
     next_8h.forEach(item => {
         const date = new Date(item.dt * 1000);
